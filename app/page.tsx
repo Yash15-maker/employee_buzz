@@ -1,5 +1,7 @@
+"use client"
 import DashboardLayout from './components/Layout';
 
 export default function Home() {
-  return <DashboardLayout />;
+  return <DashboardLayout />
+
 }
