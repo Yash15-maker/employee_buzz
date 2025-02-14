@@ -7,6 +7,7 @@ import { Table, Input, Button, Space, Tag, Menu, Dropdown, Row, Col, Select, For
 
 import { Employee, EmployeeTableProps, FilterData, Filters } from '../types';
 import { SearchOutlined, ReloadOutlined, SortAscendingOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
+import { formatDate } from '../lib';
 
 const FILTERS_API = 'https://held-aeolian-orbit.glitch.me/api/filters';
 const FILTERS_EMPLOYEE = 'https://held-aeolian-orbit.glitch.me/api/employees';
@@ -417,6 +418,7 @@ const EmployeeTable = ({ employees, fetchEmployees, totalEmployees, setPage, set
             title: "Joining Date",
             dataIndex: "joiningDate",
             key: "joiningDate",
+            render: (date: any) => formatDate(date),
         },
         {
             title: "Salary",
