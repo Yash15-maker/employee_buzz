@@ -11,7 +11,7 @@ import {
     ChevronDown,
     Menu
 } from 'lucide-react';
-import EmployeeDashboard from '../EmplyeeDashboard';
+import EmployeeDashboard from './EmplyeeDashboard';
 
 const DashboardLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);

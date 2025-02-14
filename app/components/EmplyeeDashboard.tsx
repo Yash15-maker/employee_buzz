@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useDebounce } from 'react-use';
 import { Table, Input, Button, Space, Tag, Menu, Dropdown, Row, Col, Select, Form } from "antd";
 
-import { Employee, EmployeeTableProps, FilterData, Filters } from './types';
+import { Employee, EmployeeTableProps, FilterData, Filters } from '../types';
 import { SearchOutlined, ReloadOutlined, SortAscendingOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
 
 const FILTERS_API = 'https://held-aeolian-orbit.glitch.me/api/filters';
