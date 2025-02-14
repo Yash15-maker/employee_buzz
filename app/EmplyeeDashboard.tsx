@@ -175,8 +175,10 @@ export default function EmployeeDashboard() {
                 page: 1,
             });
         } else {
-            newFilters[filterName] = Array.isArray(value) ? value : value.toString();
-            setFilters(newFilters);
+            setFilters((prevFilters) => ({
+                ...prevFilters,
+                [filterName]: Array.isArray(value) ? value : value ? [value] : [],
+            }));
             updateURL({ ...newFilters, page: 1 });
         }
 
