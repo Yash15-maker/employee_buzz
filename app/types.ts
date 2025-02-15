@@ -23,7 +23,7 @@ export interface FilterData {
 }
 
 export interface Filters {
-    legalEntity: string;
+    legalEntity: string[];
     subEntity: string;
     department: string[];
     designation: string[];

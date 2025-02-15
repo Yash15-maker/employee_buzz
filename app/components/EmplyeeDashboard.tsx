@@ -22,7 +22,7 @@ export default function EmployeeDashboard() {
     const [pageSize, setPageSize] = useState<number>(10);
     const [apply, setApply] = useState(false);
     const [filters, setFilters] = useState<Filters>({
-        legalEntity: searchParams.get('legalEntity') || '',
+        legalEntity: searchParams.get('legalEntity')?.split('') || [],
         subEntity: searchParams.get('subEntity') || '',
         department: searchParams.get('department')?.split(',') || [],
         designation: searchParams.get('designation')?.split(',') || [],
@@ -45,12 +45,13 @@ export default function EmployeeDashboard() {
 
     useEffect(() => {
         if (filters.legalEntity && filterData.subEntities) {
-            setAvailableSubEntities(filterData.subEntities[filters.legalEntity] || []);
+            setAvailableSubEntities(filterData.subEntities[filters.legalEntity[0]] || []);
         } else {
             setAvailableSubEntities([]);
         }
     }, [filters.legalEntity, filterData.subEntities]);
 
+    console.log(availableSubEntities)
 
     useEffect(() => {
         fetchFilterData();
@@ -85,7 +86,7 @@ export default function EmployeeDashboard() {
             const response = await fetch(FILTERS_API);
             const data = await response.json();
             setFilterData(data);
-            console.log(filterData)
+            console.log(filters)
         } catch (error) {
             console.error('Error fetching filter data:', error);
         }
@@ -110,7 +111,7 @@ export default function EmployeeDashboard() {
 
     const resetFilters = () => {
         const emptyFilters: Filters = {
-            legalEntity: '',
+            legalEntity: [],
             subEntity: '',
             department: [],
             designation: [],
@@ -124,7 +125,7 @@ export default function EmployeeDashboard() {
         setApply(false)
 
         fetchEmployees({
-            legalEntity: searchParams.get('legalEntity') || '',
+            legalEntity: searchParams.get('legalEntity')?.split(',') || [],
             subEntity: searchParams.get('subEntity') || '',
             department: searchParams.get('department')?.split(',') || [],
             designation: searchParams.get('designation')?.split(',') || [],
@@ -203,6 +204,8 @@ export default function EmployeeDashboard() {
                                         <Form.Item label="Legal Entities">
                                             <Select
                                                 placeholder="All Legal Entities"
+                                                mode="multiple"
+                                                showSearch
                                                 value={filters?.legalEntity}
                                                 onChange={(value) => onFilterChange("legalEntity", value)}
                                                 suffixIcon={<DownOutlined />}
