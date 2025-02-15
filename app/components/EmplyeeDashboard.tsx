@@ -434,6 +434,21 @@ const EmployeeTable = ({ employees, fetchEmployees, totalEmployees, setPage, set
                 <Tag color={status === "Active" ? "green" : "volcano"}>{status}</Tag>
             ),
         },
+        {
+            title: "Skills",
+            dataIndex: "skills",
+            key: "skills",
+            render: (skills: any) => (
+                <>
+                    {skills.map((skill: any) => (
+                        <Tag key={skill} color="blue">
+                            {skill}
+                        </Tag>
+                    ))}
+                </>
+            ),
+        },
+
     ];
 
     return (
