@@ -32,7 +32,6 @@ export interface Filters {
     salaryMin: string;
     salaryMax: string;
     salaryRange: string[];
-
 }
 
 

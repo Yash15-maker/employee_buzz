@@ -15,8 +15,6 @@ import EmployeeDashboard from './EmplyeeDashboard';
 
 const DashboardLayout = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState('');
-
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
@@ -54,7 +52,7 @@ const DashboardLayout = () => {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <div className="flex h-screen bg-gray-100">
-                <aside className={`fixed top-0 left-0 z-40 h-screen w-64 bg-[#1a1f2b] text-white transition-transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-64'} sm:translate-x-0`}>
+                <aside className={`fixed top-0 left-0 z-40 h-full w-64 bg-[#1a1f2b] text-white transition-transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-64'} lg:translate-x-0 `}>
                     <div className="px-6 py-6 border-b border-gray-700 flex justify-between items-center">
                         <h1 className="text-xl font-bold">Dashboard</h1>
                         <button className="lg:hidden text-gray-300" onClick={toggleSidebar}>✕</button>
