@@ -85,6 +85,7 @@ export default function EmployeeDashboard() {
             const response = await fetch(FILTERS_API);
             const data = await response.json();
             setFilterData(data);
+            console.log(filterData)
         } catch (error) {
             console.error('Error fetching filter data:', error);
         }
@@ -327,14 +328,14 @@ export default function EmployeeDashboard() {
                             </Form>
                         )}
                     </div>
-                    <EmployeeTable employees={employees} fetchEmployees={fetchEmployees} totalEmployees={totalEmployees} setPage={setPage} setPageSize={setPageSize} pageSize={pageSize} page={page} />
+                    <EmployeeTable employees={employees} loading={loading} fetchEmployees={fetchEmployees} totalEmployees={totalEmployees} setPage={setPage} setPageSize={setPageSize} pageSize={pageSize} page={page} />
                 </div>
             </ div>
         </div >
     );
 }
 
-const EmployeeTable = ({ employees, fetchEmployees, totalEmployees, setPage, setPageSize, pageSize, page }: any) => {
+const EmployeeTable = ({ employees, loading, fetchEmployees, totalEmployees, setPage, setPageSize, pageSize, page }: any) => {
     const [search, setSearch] = useState("");
     const [sortOrder, setSortOrder] = useState<string>("");
     const [sortedEmployees, setSortedEmployees] = useState<Employee[]>(employees);
@@ -482,6 +483,7 @@ const EmployeeTable = ({ employees, fetchEmployees, totalEmployees, setPage, set
 
                     }}
                     onChange={(pagination) => handleTableChange(pagination)}
+                    loading={loading}
                 />
             </div>
         </div>
